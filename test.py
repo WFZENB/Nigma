@@ -1,15 +1,7 @@
-list_of_values = ("45", "2", "78", "-47")
+from statistics import mode
 
-# Извлекаем оценки из датасета
-scores = [int(w[3]) for w in list_of_values]
+list_of_values = ("45", "4", "78", "-47", "-5")
 
-# Складываем все оценки
-sum_score = sum(scores)
+m = len(list_of_values) % 2 - 1
 
-# Ищем количество оценок
-num_score = len(scores)
-
-# Считаем среднее значение
-avg_score = sum_score/num_score
-
-print(avg_score)  # выводит 87.8884184721394
+print(mode([1, 3, 5]))
