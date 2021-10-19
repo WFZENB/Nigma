@@ -1,8 +1,9 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QFont
 from PyQt5 import QtCore, QtWidgets
-from qt_material import apply_stylesheet
+from qt_material import apply_stylesheet # Импорт библиотеки стилизации
 from sys import argv, exit
+from plot import Plot # Импорт графика для тестового вывода
 
 
 class Ui_MainWindow(object):
@@ -17,6 +18,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout   = QtWidgets.QHBoxLayout()                   # Горизонтальный компоновщик
         self.label_init         = QtWidgets.QLabel(self.centralwidget)      # Надпись приветствия
         self.button_load        = QtWidgets.QPushButton(self.centralwidget) # Кнопка загрузки файла
+
+        self.status_bar         = QtWidgets.QStatusBar(MainWindow)          # Статусбар
 
         self.setupUi(MainWindow)
 
@@ -46,9 +49,18 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.button_load)
         self.verticalLayout.addLayout(self.horizontalLayout)
 
+        # Зона тестирования граифика
+        # self.plot_widget = Plot(self.centralwidget, 'Время (с)', 'Размер (м)') # Создание виджета
+        # self.verticalLayout.addWidget(self.plot_widget)                        # Добавление виджета
+        #
+        # self.plot_widget.test()       # Тест виджета
+        # self.plot_widget.delete_all() # Очистка плоскости
+        # self.plot_widget.add_chart('some_name', [1, 3, 4, 5, 6], [37, 33, 5, 1, 30]) # добавление графика
+
         # Финальная компоновка
         self.gridLayout.addLayout(self.verticalLayout, 0, 0)
         MainWindow.setCentralWidget(self.centralwidget)
+        MainWindow.setStatusBar(self.status_bar)
 
         self.setTextUi()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
