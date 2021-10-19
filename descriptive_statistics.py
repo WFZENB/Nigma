@@ -46,6 +46,13 @@ def search_range(values):                               # Нахождение �
     return value_range
 
 
+def summa(values):                                      # Нахождение суммы
+    k = 0
+    for i in range(len(values)):
+        k += int(values[i])
+    return k
+
+
 print(maximum(list_of_values), "~~",  minimum(list_of_values), "~~", mean(list_of_values))
 print(median(list_of_values), "~~", search_mode(list_of_values), "~~", search_range(list_of_values))
-print(search_mode(list_of_values))
+print(search_mode(list_of_values), "~~", summa(list_of_values))
