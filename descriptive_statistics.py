@@ -53,6 +53,14 @@ def summa(values):                                      # Нахождение �
     return k
 
 
+def standard_deviation(values):                         # Нахождение стандартного (среднеквадратичного) отклонения
+    k = 0
+    a = mean(values)
+    for i in range(len(values)):
+        k += (i - a) ** 2
+    return (k / (len(values) - 1)) ** 0.5
+
+
 print(maximum(list_of_values), "~~",  minimum(list_of_values), "~~", mean(list_of_values))
 print(median(list_of_values), "~~", search_mode(list_of_values), "~~", search_range(list_of_values))
-print(search_mode(list_of_values), "~~", summa(list_of_values))
+print(search_mode(list_of_values), "~~", summa(list_of_values), "~~", standard_deviation(list_of_values))
