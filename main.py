@@ -3,7 +3,7 @@ from PyQt5.QtGui import QFont
 from PyQt5 import QtCore, QtWidgets
 from qt_material import apply_stylesheet
 from sys import argv, exit
-
+from buttons_view import HomeView, Action, Result
 
 class Ui_MainWindow(object):
     def __init__(self, MainWindow):
@@ -74,6 +74,33 @@ class Win(QMainWindow):
     def show_dialog(self):
         print('Здесь должен быть вызов диалога')
         pass # Здесь нужно прописать загрузку данных через диалог
+
+        # Открытие окна выбора группы действий
+        self.home_view = HomeView(self)
+        self.setWindowTitle("Выбор группы действий")
+        self.setCentralWidget(self.home_view.central)
+        self.home_view.button_statistics.clicked.connect(self.specific_action)
+        self.home_view.button_stat_hypothesis.clicked.connect(self.specific_action)
+        self.home_view.button_dispersion.clicked.connect(self.specific_action)
+        self.home_view.button_correlation.clicked.connect(self.specific_action)
+        self.home_view.button_factor.clicked.connect(self.specific_action)
+        self.home_view.button_cluster.clicked.connect(self.specific_action)
+        self.home_view.button_set_theory.clicked.connect(self.specific_action)
+        self.home_view.button_approximation.clicked.connect(self.specific_action)
+        self.show()
+
+    def specific_action(self):
+        self.action = Action(self)
+        self.setWindowTitle("Выбор конкретного действия")
+        self.setCentralWidget(self.action)
+        self.action.button.clicked.connect(self.results)
+        self.show()
+
+    def results(self):
+        self.result = Result(self)
+        self.setWindowTitle("Вывод результата")
+        self.setCentralWidget(self.result)
+        self.show()
 
 
 def main():
