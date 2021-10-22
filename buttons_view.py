@@ -106,4 +106,15 @@ class Result(QWidget):                  # Создание окна для вы�
     def __init__(self, parent=None):
         super(Result, self).__init__(parent)
 
+        self.horizontal = QtWidgets.QHBoxLayout(self)
+
+        self.button1 = QtWidgets.QPushButton(self)
+        self.button1.setText('Рассчитать другое значение')
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.button1.setFont(font)
+        self.button1.setMinimumSize(QtCore.QSize(340, 60))
+        self.horizontal.addWidget(self.button1)
+        self.horizontal.addWidget(self.button1, alignment=QtCore.Qt.AlignRight | QtCore.Qt.AlignTop)
+
 

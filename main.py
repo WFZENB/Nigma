@@ -100,6 +100,7 @@ class Win(QMainWindow):
         self.result = Result(self)
         self.setWindowTitle("Вывод результата")
         self.setCentralWidget(self.result)
+        self.result.button1.clicked.connect(self.specific_action)
         self.show()
 
 
