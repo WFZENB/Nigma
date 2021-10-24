@@ -85,24 +85,27 @@ class Win(QMainWindow):
         self.ui.button_load.setDefault(True)  # Установка фокуса на кнопку
 
     def show_dialog(self):
-        dialog = QFileDialog.getOpenFileNames(self, "Open File", "", "XLM File (*.xlsx)")  # файл-диалог
+        try:
+            dialog = QFileDialog.getOpenFileNames(self, "Open File", "", "XLM File (*.xlsx)")  # файл-диалог
 
-        col_data = 1  # колонка с датой
-        col_value = 2  # колонка с значением какого-либо параметра
+            col_data = 1  # колонка с датой
+            col_value = 2  # колонка с значением какого-либо параметра
+            wb = load_workbook(filename=dialog[0][0], read_only=True, data_only=True)  # загрузка выбранного excel файла
+            ws = wb.active  # обозначение главного элемента
 
-        wb = load_workbook(filename=dialog[0][0], read_only=True, data_only=True)  # загрузка выбранного excel файла
-        ws = wb.active  # обозначение главного элемента
+            list_of_dates, list_of_value = [], []  # обозначаем списки с значениями дат и значениями параметра
 
-        list_of_dates, list_of_value = [], []  # обозначаем списки с значениями дат и значениями параметра
-
-        # указываем какие ячейки необходимо прочитать
-        for i in ws.iter_rows(min_row=1, min_col=col_data, max_col=col_value, values_only=True):
-            list_of_dates.append(i[0])  # добавляем значение в список дат
-            list_of_value.append(i[1])  # добавляем значение в список значений
-
-        # выводим значения в консоль
-        for i in range(len(list_of_dates)):
-            print(list_of_dates[i], "--", list_of_value[i])
+            # указываем какие ячейки необходимо прочитать
+            for i in ws.iter_rows(min_row=1, min_col=col_data, max_col=col_value, values_only=True):
+                list_of_dates.append(i[0])  # добавляем значение в список дат
+                list_of_value.append(i[1])  # добавляем значение в список значений
+        except:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Ошибка!")
+            msg.setText("Ошибка чтения файла!")
+            msg.setIcon(msg.Warning)
+            msg.exec()
+            # выводим значения в консоль
         pass # Здесь нужно прописать загрузку данных через диалог
 
 
