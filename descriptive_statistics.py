@@ -1,10 +1,10 @@
 from statistics import mode                             # Импортируем функцию мода
-
+from statistics import NormalDist
 
 list_of_values = ("45", "4", "78", "-47", "-5", "-5")   # Пробный список
 
 
-def mean(values):                                       # Среднее значение (все значения/на количество значений)
+def mean_value(values):                                       # Среднее значение (все значения/на количество значений)
     value_sum = 0
     for i in range(len(values)):
         value_sum = value_sum + int(values[i])
@@ -55,12 +55,22 @@ def summa(values):                                      # Нахождение �
 
 def standard_deviation(values):                         # Нахождение стандартного (среднеквадратичного) отклонения
     k = 0
-    a = mean(values)
+    a = mean_value(values)
     for i in range(len(values)):
         k += (i - a) ** 2
     return (k / (len(values) - 1)) ** 0.5
 
 
-print(maximum(list_of_values), "~~",  minimum(list_of_values), "~~", mean(list_of_values))
+def confidence_interval(values, confidence=0.95):
+    data = [int(item) for item in values]
+    dist = NormalDist.from_samples(data)
+    z = NormalDist().inv_cdf((1 + confidence) / 2.)
+    h = dist.stdev * z / ((len(data) - 1) ** .5)
+    return dist.mean - h, dist.mean + h
+
+
+print(maximum(list_of_values), "~~",  minimum(list_of_values), "~~", mean_value(list_of_values))
 print(median(list_of_values), "~~", search_mode(list_of_values), "~~", search_range(list_of_values))
 print(search_mode(list_of_values), "~~", summa(list_of_values), "~~", standard_deviation(list_of_values))
+print(confidence_interval(list_of_values))
+
