@@ -8,9 +8,9 @@ class ResultView:
         self.lbl_font = QtGui.QFont() # Шрифт надписей
         self.btn_font = QtGui.QFont() # Шрифт кнопок
 
-        self.centralWidget = QtWidgets.QWidget(root)                    # Главный виджет
-        self.centralLayout = QtWidgets.QVBoxLayout(self.centralWidget)  # Главный компоновщик
-        self.horizontalLayout = QtWidgets.QHBoxLayout()                 # Горизонтальный компоновщик
+        self.centralWidget    = QtWidgets.QWidget(root)                   # Главный виджет
+        self.centralLayout    = QtWidgets.QVBoxLayout(self.centralWidget) # Главный компоновщик
+        self.horizontalLayout = QtWidgets.QHBoxLayout()                   # Горизонтальный компоновщик
 
         self.title        = QtWidgets.QLabel()       # Заголовок
         self.result_label = QtWidgets.QLabel()       # Результат
