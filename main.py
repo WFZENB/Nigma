@@ -2,7 +2,6 @@ from PyQt5.QtWidgets import QApplication
 from qt_material import apply_stylesheet
 from UI.view_manager import ViewManager
 from sys import argv, exit
-from plot import Plot # Импорт графика для тестового вывода
 
 
 def main():

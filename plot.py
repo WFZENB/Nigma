@@ -44,10 +44,7 @@ class Plot(PlotWidget):
         self.legend.setPen((55, 58, 60))
         self.legend.setBrush((45, 48, 50, 200))
 
-        # Шрифт и названия осей
-        labelStyle = {'color': '#969696', 'font-size': '13pt'}
-        self.setLabel('left', y_axis, **labelStyle)
-        self.setLabel('bottom', x_axis, **labelStyle)
+        self.set_axis_name(x_axis, y_axis)
 
         # Шрифт делений на осях
         font = QFont()
@@ -55,8 +52,16 @@ class Plot(PlotWidget):
         self.getAxis("bottom").setTickFont(font)
         self.getAxis("left").setTickFont(font)
 
+    def set_axis_name(self, x_axis, y_axis):
+        # Шрифт и названия осей
+        labelStyle = {'color': '#969696', 'font-size': '13pt'}
+        self.setLabel('left', y_axis, **labelStyle)
+        self.setLabel('bottom', x_axis, **labelStyle)
+
     # Добавление бесконечной линии
     def add_line(self, name, x=None, y=None, dotted=False):
+        self.check_name(name)
+
         # Выставление параметров
         format_name  = f'<font size="4">{name}</font>'
         color_name, color = self.rnd_color()
@@ -77,6 +82,8 @@ class Plot(PlotWidget):
 
     # Добавление грфика
     def add_chart(self, name, x, y, dotted=False):
+        self.check_name(name)
+
         # Выставление параметров
         format_name  = f'<font size="4">{name}</font>'
         color_name, color = self.rnd_color()
@@ -89,6 +96,8 @@ class Plot(PlotWidget):
 
     # Добавление гистограммы
     def add_histogram(self, name, x, y):
+        self.check_name(name)
+
         # Добавление избыточной точки
         x.append(x[len(x)-1]+1)
 
@@ -99,6 +108,11 @@ class Plot(PlotWidget):
         # Отрисовка гистограммы
         histogram = self.plot(x, y, stepMode=True, fillLevel=0, brush=color, name=format_name)
         self.add_plot_to_pool(name, histogram, color_name)
+
+    # Проверка на уникальность имени объекта
+    def check_name(self, name):
+        if name in self.plot_pool.keys():
+            raise Exception(f'Имя \'{name}\' уже используется!')
 
     # Получение случайного цвета из палитры
     def rnd_color(self):

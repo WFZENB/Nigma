@@ -13,7 +13,7 @@ class HomeView:
         self.gridlayout       = QtWidgets.QGridLayout()                   # Сетка
         self.horizontalLayout = QtWidgets.QHBoxLayout()                   # Горизонтальный компоновщик
 
-        self.label = QtWidgets.QLabel()  # Надпись
+        self.title = QtWidgets.QLabel()  # Заголовок
 
         self.button_1    = QtWidgets.QPushButton() # Кнопка описательной статистики
         self.button_2    = QtWidgets.QPushButton() # Кнопка проверки статистических гипотез
@@ -41,11 +41,11 @@ class HomeView:
         spacerItem = QtWidgets.QSpacerItem(0, 250, QtWidgets.QSizePolicy.Ignored)
         self.centralLayout.addItem(spacerItem)
 
-        # Настройка надписи
-        self.label.setFont(self.lbl_font)
-        self.label.setSizePolicy(QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed))
-        self.label.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom)
-        self.centralLayout.addWidget(self.label)
+        # Настройка заголовка
+        self.title.setFont(self.lbl_font)
+        self.title.setSizePolicy(QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed))
+        self.title.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom)
+        self.centralLayout.addWidget(self.title)
 
         # Настройка кнопки описательной статистики
         self.button_1.setMinimumSize(QtCore.QSize(380, 60))
@@ -100,7 +100,7 @@ class HomeView:
 
     def setTextUi(self):
         # Выставление текста виджетам
-        self.label.setText('Выберите категорию:')
+        self.title.setText('Выберите категорию:')
         self.button_1.setText("Описательная статистика")
         self.button_2.setText("Проверка статистических гипотез")
         self.button_3.setText("Дисперсионный анализ")

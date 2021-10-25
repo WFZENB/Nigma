@@ -12,6 +12,8 @@ class LoadView:
         self.label_init         = QtWidgets.QLabel()                        # Надпись приветствия
         self.button_load        = QtWidgets.QPushButton()                   # Кнопка загрузки файла
 
+        self.status_bar         = QtWidgets.QStatusBar(root)                # Статусбар
+
         self.setupUi(root)
 
     def setupUi(self, root):
@@ -40,6 +42,7 @@ class LoadView:
         # Финальная компоновка
         self.centralLayout.addLayout(self.horizontalLayout)
         root.setCentralWidget(self.centralWidget)
+        root.setStatusBar(self.status_bar)
 
         self.setTextUi()
 

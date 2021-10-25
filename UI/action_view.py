@@ -21,7 +21,7 @@ class ActionView:
         self.gridlayout       = QtWidgets.QGridLayout()                   # Сетка
         self.horizontalLayout = QtWidgets.QHBoxLayout()                   # Горизонтальный компоновщик
 
-        self.label = QtWidgets.QLabel() # Надпись
+        self.title = QtWidgets.QLabel() # Заголовок
 
         # Функциональные кнопки
         self.button_01 = QtWidgets.QPushButton()
@@ -74,11 +74,11 @@ class ActionView:
         spacerItem = QtWidgets.QSpacerItem(0, 40, QtWidgets.QSizePolicy.Ignored)
         self.centralLayout.addItem(spacerItem)
 
-        # Настройка надписи
-        self.label.setFont(self.lbl_font)
-        self.label.setSizePolicy(QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed))
-        self.label.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom)
-        self.centralLayout.addWidget(self.label)
+        # Настройка заголовка
+        self.title.setFont(self.lbl_font)
+        self.title.setSizePolicy(QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed))
+        self.title.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom)
+        self.centralLayout.addWidget(self.title)
 
         for i in range(len(self.button_names)):
             self.add_btn(i+1, self.button_names[i])
@@ -116,6 +116,6 @@ class ActionView:
 
     def setTextUi(self):
         # Выставление текста виджетам
-        self.label.setText('Выберите операцию:')
+        self.title.setText('Выберите операцию:')
         self.button_load.setText("Загрузить новые данные")
         self.button_back.setText("Вернуться назад")
