@@ -7,7 +7,6 @@ class LoadView:
 
         self.centralWidget      = QtWidgets.QWidget(root)                   # Главный виджет
         self.centralLayout      = QtWidgets.QVBoxLayout(self.centralWidget) # Главный компоновщик
-
         self.horizontalLayout   = QtWidgets.QHBoxLayout()                   # Горизонтальный компоновщик
         self.label_init         = QtWidgets.QLabel()                        # Надпись приветствия
         self.button_load        = QtWidgets.QPushButton()                   # Кнопка загрузки файла

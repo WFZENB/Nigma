@@ -17,7 +17,6 @@ class ActionView:
 
         self.centralWidget    = QtWidgets.QWidget(root)                   # Главный виджет
         self.centralLayout    = QtWidgets.QVBoxLayout(self.centralWidget) # Главный компоновщик
-
         self.gridlayout       = QtWidgets.QGridLayout()                   # Сетка
         self.horizontalLayout = QtWidgets.QHBoxLayout()                   # Горизонтальный компоновщик
 
@@ -80,12 +79,13 @@ class ActionView:
         self.title.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom)
         self.centralLayout.addWidget(self.title)
 
-        for i in range(len(self.button_names)):
-            self.add_btn(i+1, self.button_names[i])
-
         # Добавление заполнителя
         spacerItem = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Ignored)
         self.centralLayout.addItem(spacerItem)
+
+        # Динамическая настройка функциональных кнопок
+        for i in range(len(self.button_names)):
+            self.add_btn(i+1, self.button_names[i])
 
         # Настройка кнопки возврата к загрузке файла
         self.button_load.setMinimumSize(QtCore.QSize(340, 60))

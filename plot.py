@@ -60,7 +60,7 @@ class Plot(PlotWidget):
 
     # Добавление бесконечной линии
     def add_line(self, name, x=None, y=None, dotted=False):
-        self.check_name(name)
+        self.check_name(name) # Добавление избыточной точки
 
         # Выставление параметров
         format_name  = f'<font size="4">{name}</font>'
@@ -82,7 +82,7 @@ class Plot(PlotWidget):
 
     # Добавление грфика
     def add_chart(self, name, x, y, dotted=False):
-        self.check_name(name)
+        self.check_name(name) # Добавление избыточной точки
 
         # Выставление параметров
         format_name  = f'<font size="4">{name}</font>'
@@ -96,10 +96,8 @@ class Plot(PlotWidget):
 
     # Добавление гистограммы
     def add_histogram(self, name, x, y):
-        self.check_name(name)
-
-        # Добавление избыточной точки
-        x.append(x[len(x)-1]+1)
+        self.check_name(name)   # Проверка что имя свободно
+        x.append(x[len(x)-1]+1) # Добавление избыточной точки
 
         # Выставление параметров
         format_name  = f'<font size="4">{name}</font>'
