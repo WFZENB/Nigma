@@ -103,4 +103,15 @@ class ViewManager(QMainWindow):
 
     def result(self):
         result_view = ResultView(self)
+
+        # Зона тестирования вывода результата
+        result_view.result_label.setText('Значение 1 = 12345.6789\nЗначение 2 = 12345.6789')
+
+        # Зона тестирования граифика
+        plot = result_view.plot
+        plot.set_axis_name('Время', 'Величина')                           # Названия осей
+        plot.test()                                                       # Тест виджета
+        # plot.delete_all()                                                 # Очистка плоскости
+        # plot.add_chart('some_name', [1, 3, 4, 5, 6], [37, 33, 5, 1, 30])  # Добавление графика
+
         self.show()
