@@ -9,7 +9,6 @@ class HomeView:
 
         self.centralWidget    = QtWidgets.QWidget(root)                   # Главный виджет
         self.centralLayout    = QtWidgets.QVBoxLayout(self.centralWidget) # Главный компоновщик
-
         self.gridlayout       = QtWidgets.QGridLayout()                   # Сетка
         self.horizontalLayout = QtWidgets.QHBoxLayout()                   # Горизонтальный компоновщик
 
@@ -47,6 +46,10 @@ class HomeView:
         self.title.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom)
         self.centralLayout.addWidget(self.title)
 
+        # Добавление заполнителя
+        spacerItem = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Ignored)
+        self.centralLayout.addItem(spacerItem)
+
         # Настройка кнопки описательной статистики
         self.button_1.setMinimumSize(QtCore.QSize(380, 60))
         self.button_1.setFont(self.btn_font)
@@ -80,10 +83,6 @@ class HomeView:
         # Настройка кнопки аппроксимации зависимостей
         self.button_8.setFont(self.btn_font)
         self.gridlayout.addWidget(self.button_8, 3, 1)
-
-        # Добавление заполнителя
-        spacerItem = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Ignored)
-        self.centralLayout.addItem(spacerItem)
 
         # Настройка кнопки возврата к загрузке файла
         self.button_load.setMinimumSize(QtCore.QSize(340, 60))

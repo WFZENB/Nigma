@@ -33,14 +33,14 @@ class ViewManager(QMainWindow):
         home_view.button_load.clicked.connect(self.show_load) # Бинд кнопки на переход к странице загрузки
 
         # Бинд кнопок выбора категорий
-        home_view.button_1.clicked.connect(lambda: self.specific_action(1))
-        home_view.button_2.clicked.connect(lambda: self.specific_action(2))
-        home_view.button_3.clicked.connect(lambda: self.specific_action(3))
-        home_view.button_4.clicked.connect(lambda: self.specific_action(4))
-        home_view.button_5.clicked.connect(lambda: self.specific_action(5))
-        home_view.button_6.clicked.connect(lambda: self.specific_action(6))
-        home_view.button_7.clicked.connect(lambda: self.specific_action(7))
-        home_view.button_8.clicked.connect(lambda: self.specific_action(8))
+        home_view.button_1.clicked.connect(lambda: self.show_action(1))
+        home_view.button_2.clicked.connect(lambda: self.show_action(2))
+        home_view.button_3.clicked.connect(lambda: self.show_action(3))
+        home_view.button_4.clicked.connect(lambda: self.show_action(4))
+        home_view.button_5.clicked.connect(lambda: self.show_action(5))
+        home_view.button_6.clicked.connect(lambda: self.show_action(6))
+        home_view.button_7.clicked.connect(lambda: self.show_action(7))
+        home_view.button_8.clicked.connect(lambda: self.show_action(8))
 
         # Отключение неиспользуемых функций
         # TODO: удалять по мере необходимости
@@ -54,7 +54,7 @@ class ViewManager(QMainWindow):
 
         self.show()
 
-    def specific_action(self, action_num=0):
+    def show_action(self, action_num=0):
         # action_num - номер категории
 
         button_names = []     # Максимум 30 кнопок
@@ -83,7 +83,7 @@ class ViewManager(QMainWindow):
 
         # TODO: Бинд конкретных функциональных кнопок в соответствии с категорией
         if action_num == 1:
-            action_view.button_01.clicked.connect(self.result)
+            action_view.button_01.clicked.connect(lambda: self.result(action_num))
         elif action_num == 2:
             pass
         elif action_num == 3:
@@ -101,8 +101,12 @@ class ViewManager(QMainWindow):
 
         self.show()
 
-    def result(self):
+    def result(self, action_num):
         result_view = ResultView(self)
+
+        result_view.button_load.clicked.connect(self.show_load) # Бинд кнопки на переход к странице загрузки
+        show_action = lambda: self.show_action(action_num)
+        result_view.button_back.clicked.connect(show_action)    # Бинд кнопки на переход к странице выбора операции
 
         # Зона тестирования вывода результата
         result_view.result_label.setText('Значение 1 = 12345.6789\nЗначение 2 = 12345.6789')
